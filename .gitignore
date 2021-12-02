@@ -1,0 +1,12 @@
+# Visual Studio 2019 directory
+.vs/
+
+# .NET build folders
+bin/
+obj/
+
+# Versions of code including prints
+print_versions/
+
+# Exclude input files
+input.txt
