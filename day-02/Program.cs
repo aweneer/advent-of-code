@@ -44,8 +44,7 @@ namespace day_02
             int depth = 0;
             int aim = 0;
 
-            string[] lines = File.ReadAllLines("input.txt");
-            foreach (string line in lines)
+            foreach (string line in input)
             {
                 string[] splitLine = line.Split(" ");
                 string command = splitLine[0];
