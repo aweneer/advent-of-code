@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace day_05
 {
     class Program
-    {
+    {       
         static void Main(string[] args)
         {
             string[] input = File.ReadAllLines("input.txt");
