@@ -18,35 +18,35 @@ namespace day_06
         public static int FirstPuzzle(int[] input)
         {
             List<int> water = input.ToList();
-            Console.Write("Initial state: ");
-            for (int i = 0; i < water.Count; i++) { if (i < water.Count - 1) { Console.Write(water[i] + ","); } else { Console.WriteLine(water[i]); } }
             for (int day = 0; day < 80; day++)
             {
                 for (int fish = 0; fish < water.Count; fish++)
                 {
                     if (water[fish]-- == 0) { water[fish] = 6; water.Add(9); }
-                    
                 }
-                
-                /*
-                Console.Write("After\t" + (day + 1) + " day(s): ");
-                for (int i = 0; i < water.Count; i++)
-                {
-                    if (i < water.Count - 1) { Console.Write(water[i] + ","); } else { Console.WriteLine(water[i]); }
-                }  
-                */
             }
             return (from fishes in water select fishes).Count();
         }
 
-        public static int SecondPuzzle(int[] input)
+        public static long SecondPuzzle(int[] input)
         {
-            int[] water = input;
-            Console.Write("Initial state: \t\t");
-            for (int i = 0; i < water.Length; i++) { if (i < water.Length - 1) { Console.Write(water[i] + ","); } else { Console.WriteLine(water[i]); } }
+            long[] fishes = new long[9];
+            for (int i = 0; i < input.Length; i++)
+            {
+                fishes[input[i]] += 1;
+            }
 
-            // TODO
-            return (from fishes in water select fishes).Count();
+            for (int day = 0; day < 256; day++)
+            {
+                long f = fishes[0];
+                for (int age = 0; age < 8; age++) { fishes[age] = fishes[age + 1]; }
+                fishes[6] += f;
+                fishes[8] = f;
+            }
+
+            long sum = 0;
+            foreach (var fishCount in fishes) { sum += fishCount; }
+            return sum;
         }
     }
 }
