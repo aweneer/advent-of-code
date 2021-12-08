@@ -11,3 +11,4 @@ print_versions/
 # Exclude input files
 input.txt
 example.txt
+short_example.txt
