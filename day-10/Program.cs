@@ -24,6 +24,7 @@ namespace day_10
 
             List<char> illegalSymbols = new();
             Stack<char> openings = new();
+
             foreach (var line in input)
             {
                 foreach (var symbol in line)
@@ -47,9 +48,64 @@ namespace day_10
             return score;
         }
 
-        public static int SecondPart(string[] input)
+        public static long SecondPart(string[] input)
         {
-            return -1;
+            Dictionary<char, int> scoreRatings = new();
+            scoreRatings.Add(')', 1);
+            scoreRatings.Add(']', 2);
+            scoreRatings.Add('}', 3);
+            scoreRatings.Add('>', 4);
+
+            List<Stack<char>> openings = new();
+            Stack<char> opening = new();
+
+            bool illegal = false;
+            foreach (var line in input)
+            {
+                illegal = false;
+                opening.Clear();
+                foreach (var symbol in line)
+                {
+                    if (new[] { '(', '[', '{', '<' }.Any(ch => symbol.ToString().Contains(ch)))
+                    {
+                        opening.Push(symbol);
+                    }
+                    else
+                    {
+                        if (opening.Peek() == '(' && symbol == ')') { opening.Pop(); }
+                        else if (opening.Peek() == '[' && symbol == ']') { opening.Pop(); }
+                        else if (opening.Peek() == '{' && symbol == '}') { opening.Pop(); }
+                        else if (opening.Peek() == '<' && symbol == '>') { opening.Pop(); }
+                        else { illegal = true; break; }
+                    }
+                }
+                if (!illegal) { openings.Add(new(opening)); }
+            }
+
+            string[] addedSymbols = new string[openings.Count];
+            for (int i = 0; i < openings.Count; i++)
+            {
+                while (openings[i].Count > 0)
+                {
+                    if (openings[i].Peek() == '(') { addedSymbols[i] += ")"; openings[i].Pop(); }
+                    else if (openings[i].Peek() == '[') { addedSymbols[i] += "]"; openings[i].Pop(); }
+                    else if (openings[i].Peek() == '{') { addedSymbols[i] += "}"; openings[i].Pop(); }
+                    else if (openings[i].Peek() == '<') { addedSymbols[i] += ">"; openings[i].Pop(); }
+                }
+            }
+
+            List<long> scores = new();
+            for (int i = 0; i < addedSymbols.Length; i++)
+            {
+                long score = 0;
+                foreach (var symbol in addedSymbols[i].Reverse())
+                {
+                    score = 5 * score + scoreRatings[symbol];
+                }
+                scores.Add(score);
+            }
+            scores.Sort();
+            return scores[scores.Count / 2];
         }
 
     }
