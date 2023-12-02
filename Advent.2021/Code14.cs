@@ -9,7 +9,7 @@ namespace Advent._2021
     public static class Code14
     {
         // Very naive, inefficient and memory leeching for high inputs
-        public static int FirstPart(string[] input)
+        public static int FirstPuzzle(string[] input)
         {
             Tuple<string, char>[] rules = new Tuple<string, char>[input.Length - 2];
             Dictionary<char, int> elementQuantity = new();
@@ -49,7 +49,7 @@ namespace Advent._2021
             return elementQuantity.Values.Max() - elementQuantity.Values.Min();
         }
 
-        public static long SecondPart(string[] input)
+        public static long SecondPuzzle(string[] input)
         {
             Dictionary<string, Tuple<string, string>> pairsFromRule = new();
             Dictionary<string, long> pairs = new();
