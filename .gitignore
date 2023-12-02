@@ -2,13 +2,17 @@
 .vs/
 
 # .NET build folders
-bin/
-obj/
+[B|b]in/
+[O|o]bj/
 
 # Versions of code including prints
 print_versions/
 
 # Exclude input files
-input.txt
-example.txt
-short_example.txt
+input*.txt
+example*.txt
+short_example*.txt
+
+**.user
+
+launchSettings.json

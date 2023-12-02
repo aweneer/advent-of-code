@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Advent.2015\Advent.2015.csproj" />
+    <ProjectReference Include="..\Advent.2016\Advent.2016.csproj" />
+    <ProjectReference Include="..\Advent.2017\Advent.2017.csproj" />
+    <ProjectReference Include="..\Advent.2018\Advent.2018.csproj" />
+    <ProjectReference Include="..\Advent.2019\Advent.2019.csproj" />
+    <ProjectReference Include="..\Advent.2020\Advent.2020.csproj" />
+    <ProjectReference Include="..\Advent.2021\Advent.2021.csproj" />
+    <ProjectReference Include="..\Advent.2022\Advent.2022.csproj" />
+    <ProjectReference Include="..\Advent.2023\Advent.2023.csproj" />
+  </ItemGroup>
+
+</Project>

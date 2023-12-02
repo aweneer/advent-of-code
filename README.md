@@ -1,7 +1,7 @@
-# Advent of Code 2021 solutions
+# Advent of Code solutions
 
 ## Introduction
-This repository contains C# solutions for [Advent of Code 2021](https://adventofcode.com/2021) puzzles. Each puzzle day sources is in its own Project within a Visual Studio solution.
+This repository contains C# solutions for [Advent of Code](https://adventofcode.com/) puzzles. Each Advent of Code event is in its own Project within a Visual Studio solution.
 
 ### License
 **GNU GPLv3**. See `LICENSE` in root directory.
