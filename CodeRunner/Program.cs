@@ -12,10 +12,11 @@ namespace CodeRunner
         {
             Console.WriteLine("Choose year and puzzle to proceed. (e.g. 2023-07, or only \"07\" if you want current year.)");
             string year = "2023";
-            string puzzle = "03";
+            string puzzle = "08";
 
             while (true)
             {
+                break;
                 var userInput = Console.ReadLine();
 
                 var matchFull = Regex.Match(userInput, @"^(\d{4})-(\d{2})$");
@@ -50,22 +51,51 @@ namespace CodeRunner
             var firstPuzzleMethod = typeToCall.GetMethod("FirstPuzzle");
             var secondPuzzleMethod = typeToCall.GetMethod("SecondPuzzle");
 
-            var exampleFile = File.ReadAllLines($@"..\..\..\..\Advent.{year}\examples\example{puzzle}.txt");
-            var inputFile = File.ReadAllLines($@"..\..\..\..\Advent.{year}\inputs\input{puzzle}.txt");
+            var exampleFile = $@"..\..\..\..\Advent.{year}\examples\example{puzzle}.txt";
+            var secondExampleFile = $@"..\..\..\..\Advent.{year}\examples\example{puzzle}b.txt";
+            var thirdExampleFile = $@"..\..\..\..\Advent.{year}\examples\example{puzzle}c.txt";
+            var inputFile = $@"..\..\..\..\Advent.{year}\inputs\input{puzzle}.txt";
+
+            // TODO make dynamic by prefix
+            string[] exampleFileContents = Array.Empty<string>();
+            if (File.Exists(exampleFile))
+            {
+                exampleFileContents = File.ReadAllLines($@"..\..\..\..\Advent.{year}\examples\example{puzzle}.txt");
+            }
+
+            string[] secondExampleFileContents = Array.Empty<string>();
+            if (File.Exists(secondExampleFile))
+            {
+                secondExampleFileContents = File.ReadAllLines($@"..\..\..\..\Advent.{year}\examples\example{puzzle}b.txt");
+            }
+
+
+            string[] thirdExampleFileContents = Array.Empty<string>();
+            if (File.Exists(thirdExampleFile))
+            {
+                thirdExampleFileContents = File.ReadAllLines($@"..\..\..\..\Advent.{year}\examples\example{puzzle}c.txt");
+            }
+
+            string[] inputFileContents = Array.Empty<string>();
+            if (File.Exists(inputFile))
+            {
+                inputFileContents = File.ReadAllLines($@"..\..\..\..\Advent.{year}\inputs\input{puzzle}.txt");
+            }
 
             Stopwatch stopwatch = new Stopwatch();
 
             // FirstPuzzle
             stopwatch.Start();
-            PrintResult(firstPuzzleMethod.Invoke(firstPuzzleMethod.GetParameters(), new object[] { exampleFile }), "Example");
-            PrintResult(firstPuzzleMethod.Invoke(firstPuzzleMethod.GetParameters(), new object[] { inputFile }), "Input");
+            PrintResult(firstPuzzleMethod.Invoke(firstPuzzleMethod.GetParameters(), new object[] { exampleFileContents }), "Example");
+            PrintResult(firstPuzzleMethod.Invoke(firstPuzzleMethod.GetParameters(), new object[] { secondExampleFileContents }), "Example B");
+            PrintResult(firstPuzzleMethod.Invoke(firstPuzzleMethod.GetParameters(), new object[] { inputFileContents }), "Input");
             stopwatch.Stop();
             PrintElapsedTime(selectedType, firstPuzzleMethod.Name, stopwatch);
 
             // SecondPuzzle
             stopwatch.Restart();
-            PrintResult(secondPuzzleMethod.Invoke(secondPuzzleMethod.GetParameters(), new object[] { exampleFile }), "Example");
-            PrintResult(secondPuzzleMethod.Invoke(secondPuzzleMethod.GetParameters(), new object[] { inputFile }), "Input");
+            PrintResult(secondPuzzleMethod.Invoke(secondPuzzleMethod.GetParameters(), new object[] { thirdExampleFileContents }), "Example C");
+            PrintResult(secondPuzzleMethod.Invoke(secondPuzzleMethod.GetParameters(), new object[] { inputFileContents }), "Input");
             stopwatch.Stop();
             PrintElapsedTime(selectedType, secondPuzzleMethod.Name, stopwatch);
         }

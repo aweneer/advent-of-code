@@ -8,5 +8,22 @@ namespace Advent._2023
 {
     public static class Code10
     {
+        public static double FirstPuzzle(string[] input)
+        {
+            double result = 0;
+
+
+
+            return result;
+        }
+
+        public static double SecondPuzzle(string[] input)
+        {
+            double result = 0;
+
+
+
+            return result;
+        }
     }
 }
